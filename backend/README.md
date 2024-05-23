@@ -1,0 +1,1 @@
+This is the backend part of the Blog API. Following the assignment on The Odin Project I have completed up until #3, the models are done and a function was created and ran to populate the database. Next I need to create routes and controllers.
