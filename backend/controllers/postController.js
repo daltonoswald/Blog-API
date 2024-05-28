@@ -66,6 +66,22 @@ exports.new_post = [
     }
 ]
 
+exports.post_detail = asyncHandler(async (req, res, next) => {
+    const post = await Post.findById(req.params.postid)
+        .populate('author')
+        .exec();
+
+        if (post === null) {
+            const err = new Error("Post not found");
+            err.status = 404;
+            return next(err);
+        } else {
+            res.json(post);
+        }
+
+
+})
+
 exports.delete_post = asyncHandler(async (req, res, next) => {
     jwt.verify(req.token, process.env.TOKEN_KEY, async (err, authData) => {
         if (authData.user.admin === true) {
