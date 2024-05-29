@@ -20,7 +20,7 @@ function verifyToken(req, res, next) {
 router.post('/postman', verifyToken, post_controller.postman);
 router.post('/comments/postman', verifyToken, comment_controller.postman);
 
-router.post('/', verifyToken, post_controller.index);
+router.get('/', post_controller.index);
 
 router.post('/:postid', verifyToken, post_controller.post_detail);
 

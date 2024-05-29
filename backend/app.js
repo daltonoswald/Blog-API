@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose')
+const cors = require('cors');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
@@ -15,6 +16,15 @@ var app = express();
 mongoose.set("strictQuery", false);
 const mongoDB = process.env.DEV_DB_URL;
 // const mongoDB = dev_db_url;
+
+// const allowedOrigins = process.env.ALLOWED_ORIGINS || '';
+// const allowedOriginsArray = allowedOrigins.split(',').map((item) => item.trim());
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: 'GET,PUT,POST',
+  optionsSuccessStatus: 204,
+}))
 
 main().catch((err) => console.log(err));
 async function main() {
