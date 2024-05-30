@@ -105,22 +105,27 @@ exports.sign_up = [
     async(req, res, next) => {
         try {
             const errors = validationResult(req);
+            console.log(req.body.first_name);
+            console.log(req.body.password)
+            console.log(req.body.confirm_password);
 
             const user = new User({
-                title: req.body.title,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 username: req.body.username,
-                password: await bcrypt.hash(req.body.password, 10)
+                password: await bcrypt.hash(req.body.password, 10),
+                admin: false,
             });
 
             if (!errors.isEmpty()) {
-                res.render("sign-up", {
-                    title: "Sign up",
-                    userSignedUp: user,
-                    errors: errors.array(),
-                });
-                return;
+                // res.render("sign-up", {
+                //     title: "Sign up",
+                //     userSignedUp: user,
+                //     errors: errors.array(),
+                // });
+                const errorsMessages = errors.array().map((error) => error.msg);
+                res.json({ error: errorsMessages })
+                // return;
             } else {
                 const usernameTaken = await User.findOne({
                     username: req.body.username,
