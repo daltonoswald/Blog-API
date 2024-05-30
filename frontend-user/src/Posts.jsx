@@ -1,16 +1,5 @@
 import { useState, useEffect } from 'react';
-
-// const fetchAllPosts = async () => {
-//     const url = `http://localhost:3000/posts`;
-//     try {
-//         const response = await fetch(url);
-//         const data = await response.json();
-//         return data
-//     } catch (error) {
-//         console.log(error);
-//         throw error
-//     }
-// }
+import Nav from './Nav';
 
 export default function FetchPosts() {
     const [error, setError] = useState(null);
@@ -19,7 +8,6 @@ export default function FetchPosts() {
     const url = `http://localhost:3000/posts`;
 
     const fetchAllPosts = async () => {
-        // const url = `http://localhost:3000/posts`;
         try {
             const response = await fetch(url);
             const data = await response.json();
@@ -48,17 +36,20 @@ export default function FetchPosts() {
 
     if (isLoading) return (
         <>
+            <Nav />
             <p>Loading...</p>
         </>
     )
     if (error) return (
         <>
+            <Nav />
             <p>Error</p>
         </>
     )
 
     return (
         <>
+            <Nav />
             <div>
                 {posts.map((post) => (
                     <div key={post._id}>

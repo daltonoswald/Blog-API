@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { Link } from 'react-router-dom'
 
 const App = () => {
   return (
@@ -11,7 +12,13 @@ const App = () => {
       <nav>
         <ul>
           <li>
-            <a href="profile">Profile Page</a>
+            <Link to='/posts'>Posts, this will be changed to / in the future</Link>
+          </li>
+          <li>
+            <Link to='/log-in'>Log in</Link>
+          </li>
+          <li>
+            <Link to='/sign-up'>Sign up</Link>
           </li>
         </ul>
       </nav>
