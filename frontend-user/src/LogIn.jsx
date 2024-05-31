@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 
-export default function LogIn() {
+export default function LogIn( { username, setUsername }) {
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
@@ -28,7 +28,11 @@ export default function LogIn() {
 
             if (response.ok) {
                 const token = data.token;
+                const user = data.user;
                 localStorage.setItem("authenticationToken", token);
+                console.log(user.username)
+                setUsername(user.username);
+                localStorage.setItem("username", user.username);
                 console.log(token);
                 navigate("/");
             } else {
@@ -41,7 +45,7 @@ export default function LogIn() {
 
     return( 
         <>
-            <Nav />
+            <Nav username={username} setUsername={setUsername} />
             <div className="content">
                     <form onSubmit={handleSubmit} className="log-in-form">
                         <label htmlFor='username'>Username</label>
