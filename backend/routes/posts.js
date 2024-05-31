@@ -22,13 +22,13 @@ router.post('/comments/postman', verifyToken, comment_controller.postman);
 
 router.get('/', post_controller.index);
 
-router.post('/:postid', verifyToken, post_controller.post_detail);
+router.get('/:postid', post_controller.post_detail);
 
 router.post('/new-post', verifyToken, post_controller.new_post);
 
 router.delete('/delete-post/:postid', verifyToken, post_controller.delete_post);
 
-router.post('/:postid/comments', verifyToken, comment_controller.comments);
+router.get('/:postid/comments', comment_controller.comments);
 
 router.post('/:postid/comments/new-comment', verifyToken, comment_controller.new_comment);
 

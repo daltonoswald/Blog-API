@@ -70,6 +70,8 @@ exports.post_detail = asyncHandler(async (req, res, next) => {
     const post = await Post.findById(req.params.postid)
         .populate('author')
         .exec();
+    
+        const comments = await Comment.find({ post: req.params.postid }).exec();
 
         if (post === null) {
             const err = new Error("Post not found");
@@ -77,6 +79,8 @@ exports.post_detail = asyncHandler(async (req, res, next) => {
             return next(err);
         } else {
             res.json(post);
+            // res.json(comments);
+            console.log(comments);
         }
 
 

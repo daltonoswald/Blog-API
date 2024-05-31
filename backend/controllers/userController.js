@@ -59,6 +59,7 @@ exports.log_in = asyncHandler(async (req, res, next) => {
         if (!isMatch) {
             res.status(401).json({ message: "Incorrect password" });
         } else {
+            console.log(user.username);
             res.json({ message: 'user logged in successfully', token, user });
         }
     });
@@ -69,6 +70,7 @@ exports.log_out = async(req, res, next) => {
         if (err) {
             return next(err);
         }
+        localStorage.removeItem('username')
         res.redirect('/');
         res.json({
             text: "Logged out",
@@ -105,9 +107,6 @@ exports.sign_up = [
     async(req, res, next) => {
         try {
             const errors = validationResult(req);
-            console.log(req.body.first_name);
-            console.log(req.body.password)
-            console.log(req.body.confirm_password);
 
             const user = new User({
                 first_name: req.body.first_name,
