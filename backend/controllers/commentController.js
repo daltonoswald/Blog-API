@@ -4,10 +4,10 @@ const User = require('../models/user');
 const Post = require('../models/post');
 const Comment = require('../models/comment')
 const jwt = require('jsonwebtoken');
-const verifyToken = require('../middleware');
+const { generateToken, verifyToken} = require('../jsonwebtoken');
 
 exports.comments = asyncHandler(async (req, res, next) => {
-    const comments = await Comment.find({ post: req.params.postid }).exec();
+    const comments = await Comment.find({ post: req.params.postid }).populate('author').exec();
     res.json(comments);
 })
 
@@ -20,8 +20,14 @@ exports.new_comment = [
     async (req, res, next) => {
         try {
             const errors = validationResult(req);
+            const token = req.headers.authorization.split(' ')[1];
+            const authorizedUser = verifyToken(token)
+            const tokenUsername = authorizedUser.user.username
+            console.log(authorizedUser.user.username)
+            console.log(`tokenUsername = ` + tokenUsername);
 
             const comment = new Comment({
+                author: tokenUsername,
                 text: req.body.text,
                 date: Date.now(),
                 post: req.params.postid,

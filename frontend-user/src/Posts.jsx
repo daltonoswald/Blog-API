@@ -51,7 +51,7 @@ export default function FetchPosts({ username }) {
     return (
         <>
             <Nav username={username} />
-            <div>
+            <div className='content'>
                 {posts.map((post) => (
                     <div key={post._id}>
                         <Link 
