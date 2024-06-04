@@ -1,8 +1,16 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 
 export default function SignUp() {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('authenticationToken')) {
+            console.log("Already signed in");
+            navigate('/');
+        }
+    })
 
     const handleSubmit = async (event) => {
         event.preventDefault();

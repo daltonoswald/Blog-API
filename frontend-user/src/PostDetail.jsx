@@ -111,6 +111,7 @@ export default function PostDetail({ username }) {
                     const data = await response.json();
                     if (response.ok) {
                         console.log(data)
+                        window.location.reload();
                     }
             } catch (error) {
                 console.error("Error requesting:", error)

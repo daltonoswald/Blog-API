@@ -18,7 +18,7 @@ export default function Nav( {username, setUsername }) {
             <div className='right'>
             {localStorage.getItem("authenticationToken") && (
                 <>
-                    <p>You are signed in as {username}.</p>
+                    <p>You are signed in as {localStorage.getItem('username')}.</p>
                     <button onClick={logout}>Log out</button>
                 </>
             )}

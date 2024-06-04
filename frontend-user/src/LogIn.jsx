@@ -5,6 +5,18 @@ import Nav from './Nav';
 export default function LogIn( { username, setUsername }) {
     const navigate = useNavigate();
 
+    // if (localStorage.getItem('authenticationToken')) {
+    //     console.log("Already signed in");
+    //     navigate('/');
+    // }
+    
+    useEffect(() => {
+        if (localStorage.getItem('authenticationToken')) {
+            console.log("Already signed in");
+            navigate('/');
+        }
+    })
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const url = `http://localhost:3000/users/log-in`;
