@@ -1,17 +1,13 @@
-// function verifyToken(req, res, next) {
-//     const bearerHeader = req.headers['authorization'];
-//     if(typeof bearerHeader !== 'undefined') {
+const alreadyLoggedIn = (req, res, next) => {
+    const alreadyLoggedIn = req.get('authenticationToken');
+    console.log(`alreadyLoggedIn = ` + alreadyLoggedIn);
 
-//     } else {
-//         res.sendStatus(403);
-//     }
-// }
-
-module.exports.verifyToken = (req, res, next) => {
-    const bearerHeader = req.headers['authorization'];
-    if(typeof bearerHeader !== 'undefined') {
-
-    } else {
-        res.sendStatus(403);
+    if (alreadyLoggedIn) {
+        res.sendStatus(409);
+        res.redirect("/");
+        next();
     }
+    next();
 }
+
+module.exports = { alreadyLoggedIn }

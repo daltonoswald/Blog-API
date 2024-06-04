@@ -22,12 +22,10 @@ exports.new_comment = [
             const errors = validationResult(req);
             const token = req.headers.authorization.split(' ')[1];
             const authorizedUser = verifyToken(token)
-            const tokenUsername = authorizedUser.user.username
-            console.log(authorizedUser.user.username)
-            console.log(`tokenUsername = ` + tokenUsername);
+            const tokenUserId = authorizedUser.user._id
 
             const comment = new Comment({
-                author: tokenUsername,
+                author: tokenUserId,
                 text: req.body.text,
                 date: Date.now(),
                 post: req.params.postid,

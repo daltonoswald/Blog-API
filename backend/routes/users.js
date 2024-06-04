@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const user_controller = require('../controllers/userController')
+const { generateToken, verifyToken} = require('../jsonwebtoken');
 
 router.post('/postman', user_controller.postman);
 
