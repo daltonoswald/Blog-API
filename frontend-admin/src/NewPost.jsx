@@ -1,0 +1,80 @@
+import { useState, useEffect } from 'react';
+import Nav from './Nav';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+export default function NewPost() {
+    const navigate = useNavigate();
+    const url = `http://localhost:3000/posts/new-post`;
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const postData = {
+            title: e.target.title.value,
+            text: e.target.text.value,
+            published: e.target.published.value,
+        };
+
+        try {
+            const token = localStorage.getItem('authenticationToken');
+            const response = await fetch(url,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: JSON.stringify(postData),
+                })
+                const data = await response.json();
+                if (response.ok) {
+                    console.log(data)
+                    navigate('/posts');
+                }
+        } catch (error) {
+            console.error("Error requesting:", error)
+        }
+    }
+
+    return (
+        <>
+            <Nav />
+            <div className="content">
+                    <form onSubmit={handleSubmit} className="new-post-form">
+                    <label htmlFor='title'>Title</label>
+                        <input 
+                            type="text"
+                            id="title"
+                            name="title"
+                            minLength={1}
+                            maxLength={200}
+                            required
+                        />
+                    <label htmlFor='text'>Text</label>
+                        <input
+                            type='text'
+                            id='text'
+                            name='text'
+                            minLength={1}
+                            maxLength={2000}
+                            required
+                        />
+                        <label htmlFor='published'>Published</label>
+                        <input
+                            type='radio'
+                            id='published'
+                            name='published'
+                            value='true'
+                        />
+                        <label htmlFor='published'>Save draft</label>
+                        <input
+                            type='radio'
+                            id='published'
+                            name='published'
+                            value='false'
+                        />
+                        <button type="submit">Submit Post</button>
+                    </form>
+            </div>
+        </>
+    )
+}

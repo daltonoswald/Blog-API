@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 
-export default function LogIn( { username, setUsername }) {
+export default function LogIn() {
     const navigate = useNavigate();
 
     // if (localStorage.getItem('authenticationToken')) {
@@ -43,7 +43,6 @@ export default function LogIn( { username, setUsername }) {
                 const user = data.user;
                 localStorage.setItem("authenticationToken", token);
                 console.log(user.username)
-                setUsername(user.username);
                 localStorage.setItem("username", user.username);
                 console.log(token);
                 navigate("/");

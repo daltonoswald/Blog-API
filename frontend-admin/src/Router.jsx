@@ -3,8 +3,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Posts from './Posts.jsx'
 import LogIn from './LogIn.jsx'
 import PostDetail from "./PostDetail.jsx";
+import UnpublishedPosts from "./UnpublishedPosts.jsx";
 
 import App from './App.jsx'
+import NewPost from "./NewPost.jsx";
+import PostEdit from "./PostEdit.jsx";
 
 
 export default function Router() {
@@ -15,8 +18,16 @@ export default function Router() {
           element: <App />,
         },
         {
+          path:'/drafts',
+          element: <UnpublishedPosts />
+        },
+        {
           path: '/posts',
           element: <Posts />,
+        },
+        {
+          path:"/edit/:postid",
+          element: <PostEdit />
         },
         {
           path: '/log-in',
@@ -25,7 +36,11 @@ export default function Router() {
         {
             path: '/posts/:postid',
             element: <PostDetail />
-        }
+        },
+        {
+          path: '/new-post',
+          element: <NewPost />
+        },
       ]);
 
       return <RouterProvider router={router} />

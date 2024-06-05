@@ -14,6 +14,8 @@ export default function Nav() {
         <div className='nav'>
             <div className='nav-left'>
                 <Link to='/'>Homepage</Link>
+                <Link to='/new-post'>New Post</Link>
+                <Link to='/drafts'>Drafts</Link>
             </div>
             <div className='right'>
             {localStorage.getItem("authenticationToken") && (

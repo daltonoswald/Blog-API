@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Nav from './Nav';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export default function PostDetail({ username }) {
+export default function PostDetail() {
     const navigate = useNavigate();
     const location = useLocation();
     const post = location.state?.post
@@ -57,13 +57,13 @@ export default function PostDetail({ username }) {
 
     if (isLoading) return (
         <>
-            <Nav username={username} />
+            <Nav />
             <p>Loading...</p>
         </>
     )
     if (error) return (
         <>
-            <Nav username={username} />
+            <Nav />
             <p>Error</p>
         </>
     )
@@ -118,32 +118,43 @@ export default function PostDetail({ username }) {
             }
         }
 
-    return (
-        <>
-            <Nav username={username} />
-            <div className='content'>
-                    <div key={post._id} className='post-detail'>
-                        <h1>{post.title}</h1>
-                        <p>By {post.author.username}, {post.date_formatted}</p>
-                        <p>{post.text}</p>
+        function handleSubmit() {
+            console.log("hi");
+        }
+            return (
+                <>
+                    <Nav />
+                    <div className='content'>
+                            <div key={post._id} className='post-detail'>
+                                <h1>{post.title}</h1>
+                                <p>By {post.author.username}, {post.date_formatted}</p>
+                                <p>{post.text}</p>
+                                {/* <button onClick={navigate('/edit/:post._id')}>Edit Post</button> */}
+                                <Link 
+                                    to={`/edit/${post._id}`}
+                                    key={post._id}
+                                    state={{ post }}
+                                >
+                                <p className='edit-button'>Edit</p>
+                                </Link>
+                            </div>
+                            <div className='comment-section'>
+                                {renderComments(comments)}
+                                <form onSubmit={addComment} className='comment-form'>
+                                    <label htmlFor='text'>Comment:</label>
+                                    <input 
+                                        type='text'
+                                        id='text'
+                                        name='text'
+                                        minLength={1}
+                                        maxLength={200}
+                                        required
+                                    />
+                                    <button type="submit">Post Comment</button>
+                                </form>
+                            </div>
+                                
                     </div>
-                    <div className='comment-section'>
-                        {renderComments(comments)}
-                        <form onSubmit={addComment} className='comment-form'>
-                            <label htmlFor='text'>Comment:</label>
-                            <input 
-                                type='text'
-                                id='text'
-                                name='text'
-                                minLength={1}
-                                maxLength={200}
-                                required
-                            />
-                            <button type="submit">Post Comment</button>
-                        </form>
-                    </div>
-                        
-            </div>
-        </>
-    )
+                </>
+            )
 }

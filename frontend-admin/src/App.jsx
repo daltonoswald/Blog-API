@@ -21,6 +21,12 @@ const App = () => {
             <li>
               <Link to='/log-in'>Log in</Link>
             </li>
+            <li>
+              <Link to='/new-post'>New Post</Link>
+            </li>
+            <li>
+              <Link to='/drafts'>Drafts</Link>
+            </li>
           </ul>
         </nav>
       </div>
