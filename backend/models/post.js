@@ -5,9 +5,9 @@ const opts = { toJSON: { virtuals: true } };
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
-    title: { type: String, required: true, minLength: 1, maxLength: 25 },
+    title: { type: String, required: true, minLength: 1, maxLength: 200 },
     author: { type: Schema.Types.ObjectId, ref: "User", require: true },
-    text: { type: String, required: true, minLength: 1, maxLength: 200 },
+    text: { type: String, required: true, minLength: 1, maxLength: 2000 },
     date: { type: Date, required: true, default: Date.now },
     published: { type: Boolean, required: true, default: true },
 }, opts);

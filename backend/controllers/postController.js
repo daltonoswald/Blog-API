@@ -4,11 +4,25 @@ const User = require('../models/user');
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const jwt = require('jsonwebtoken');
-const verifyToken = require('../middleware');
+const { generateToken, verifyToken} = require('../jsonwebtoken');
 
 exports.index = async function (req, res, next) {
     try {
-        const allPosts = await Post.find({})
+        const allPublishedPosts = await Post.find({ published: true })
+            .sort({ date: -1 })
+            .populate('author')
+            .exec();
+
+            res.json(allPublishedPosts);
+    } catch (err) {
+        console.log(err);
+        res.json(err);
+    }
+}
+
+exports.unpublished_posts = async function (req, res, next) {
+    try {
+        const allPosts = await Post.find({ published: false })
             .sort({ date: -1 })
             .populate('author')
             .exec();
@@ -36,12 +50,15 @@ exports.new_post = [
     async (req, res, next) => {
         try {
             const errors = validationResult(req);
+            const token = req.headers.authorization.split(' ')[1];
+            const authorizedUser = verifyToken(token)
+            const tokenUserId = authorizedUser.user._id
 
             const post = new Post({
                 title: req.body.title,
                 text: req.body.text,
                 // author: req.user._id,
-                author: '664f77959df2b9552224c1ff',
+                author: tokenUserId,
                 date: Date.now(),
                 published: req.body.published,
             });
@@ -64,6 +81,49 @@ exports.new_post = [
             console.log(err);
         }
     }
+]
+
+exports.post_update = [
+    body("title")
+        .trim()
+        .isLength({ min: 1, max: 200 })
+        .escape()
+        .withMessage("Title is required"),
+    body("text")
+        .trim()
+        .isLength({ min: 1, max: 2000 })
+        .escape()
+        .withMessage("Text content is required"),
+
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+        const token = req.headers.authorization.split(' ')[1];
+        const authorizedUser = verifyToken(token)
+        const tokenUserId = authorizedUser.user._id
+
+        const post = await Post.findById(req.params.postid).exec();
+
+        const updatedPost = new Post({
+            title: req.body.title,
+            text: req.body.text,
+            author: tokenUserId,
+            date: Date.now(),
+            published: req.body.published,
+            _id: post.id
+        });
+
+        if (!errors.isEmpty()) {
+            res.json({
+                message: "Something is wrong",
+                post: updatedPost,
+                errors: errors.array(),
+            })
+            return;
+        } else {
+                await Post.findByIdAndUpdate(post, updatedPost, {});
+                return res.json({ message: updatedPost })
+            }
+    })
 ]
 
 exports.post_detail = asyncHandler(async (req, res, next) => {

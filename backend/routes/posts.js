@@ -22,7 +22,11 @@ router.post('/comments/postman', verifyToken, comment_controller.postman);
 
 router.get('/', post_controller.index);
 
+router.get('/drafts', post_controller.unpublished_posts)
+
 router.get('/:postid', post_controller.post_detail);
+
+router.put('/edit/:postid', verifyToken, post_controller.post_update);
 
 router.post('/new-post', verifyToken, post_controller.new_post);
 
