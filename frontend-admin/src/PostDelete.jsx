@@ -37,7 +37,6 @@ export default function PostDelete() {
 // }, []);
 
     const handleDelete = async (e) => {
-        console.log('deleting post')
         e.preventDefault();
         try {
             const token = localStorage.getItem('authenticationToken');

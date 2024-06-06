@@ -24,7 +24,6 @@ export default function FetchPosts({ username }) {
                 const getPosts = async () => {
                     const postsData = await fetchAllPosts();
                     setPosts(postsData);
-                    console.log(postsData);
                     setIsLoading(false);  
                 }
                 getPosts();

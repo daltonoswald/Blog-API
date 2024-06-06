@@ -17,7 +17,6 @@ export default function PostEdit() {
         try {
             const response = await fetch(url);
             const data = await response.json();
-            console.log(data);
             return data
         } catch (error) {
             console.log(error);
@@ -53,7 +52,6 @@ export default function PostEdit() {
     )
 
     const handleSubmit = async (e) => {
-        console.log(editUrl);
         e.preventDefault();
         const postData = {
             title: title,
@@ -74,7 +72,6 @@ export default function PostEdit() {
                 })
                 const data = await response.json();
                 if (response.ok) {
-                    console.log(data)
                     navigate('/drafts');
                 }
         } catch (error) {

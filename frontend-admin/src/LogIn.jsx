@@ -4,11 +4,6 @@ import Nav from './Nav';
 
 export default function LogIn() {
     const navigate = useNavigate();
-
-    // if (localStorage.getItem('authenticationToken')) {
-    //     console.log("Already signed in");
-    //     navigate('/');
-    // }
     
     useEffect(() => {
         if (localStorage.getItem('authenticationToken')) {

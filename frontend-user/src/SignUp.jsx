@@ -37,7 +37,6 @@ export default function SignUp() {
             const data = await response.json();
 
             if (response.ok) {
-                console.log(data);
                 navigate("/log-in");
             } else {
                 console.error("Error during authentication:", data.message);

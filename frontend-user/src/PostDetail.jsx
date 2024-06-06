@@ -17,7 +17,6 @@ export default function PostDetail() {
         try {
             const response = await fetch(url);
             const data = await response.json();
-            console.log(data);
             return data
         } catch (error) {
             console.log(error);
@@ -70,12 +69,10 @@ export default function PostDetail() {
 
     function renderComments(comments) {
         if (!comments || comments.length === 0) {
-            console.log(comments)
             return(
                 <p>No comments yet...</p>
             )
         } else {
-            console.log(comments);
             return (
                 <div className='comments'>
                 {comments.map((comment) => (
@@ -110,7 +107,6 @@ export default function PostDetail() {
                     })
                     const data = await response.json();
                     if (response.ok) {
-                        console.log(data)
                         window.location.reload();
                     }
             } catch (error) {

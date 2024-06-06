@@ -69,7 +69,6 @@ export default function PostDetail() {
 
     function renderComments(comments) {
         if (!comments || comments.length === 0) {
-            console.log(comments)
             return(
                 <p>No comments yet...</p>
             )
@@ -108,7 +107,6 @@ export default function PostDetail() {
                     })
                     const data = await response.json();
                     if (response.ok) {
-                        console.log(data)
                         window.location.reload();
                     }
             } catch (error) {

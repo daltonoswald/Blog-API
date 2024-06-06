@@ -27,7 +27,6 @@ export default function NewPost() {
                 })
                 const data = await response.json();
                 if (response.ok) {
-                    console.log(data)
                     navigate('/posts');
                 }
         } catch (error) {

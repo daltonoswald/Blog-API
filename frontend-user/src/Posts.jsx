@@ -30,7 +30,7 @@ export default function FetchPosts() {
                 getPosts();
             } catch (error) {
                 setIsLoading(false);
-                console.log(error);
+                console.log(error);className
                 throw error;
             }
     }, []);
