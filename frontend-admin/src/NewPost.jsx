@@ -48,6 +48,7 @@ export default function NewPost() {
                             minLength={1}
                             maxLength={200}
                             required
+                            className='title-input'
                         />
                     <label htmlFor='text'>Text</label>
                         <input
@@ -57,22 +58,29 @@ export default function NewPost() {
                             minLength={1}
                             maxLength={2000}
                             required
+                            className='text-input'
                         />
-                        <label htmlFor='published'>Published</label>
-                        <input
-                            type='radio'
-                            id='published'
-                            name='published'
-                            value='true'
-                        />
-                        <label htmlFor='published'>Save draft</label>
-                        <input
-                            type='radio'
-                            id='published'
-                            name='published'
-                            value='false'
-                        />
-                        <button type="submit">Submit Post</button>
+                        <div className='radio-options'>
+                            <div className='published-true'>
+                                <label htmlFor='published'>Published</label>
+                                <input
+                                    type='radio'
+                                    id='published'
+                                    name='published'
+                                    value='true'
+                                />
+                            </div>
+                            <div className='published-false'>
+                                <label htmlFor='published'>Save draft</label>
+                                <input
+                                    type='radio'
+                                    id='published'
+                                    name='published'
+                                    value='false'
+                                />
+                            </div>
+                        </div>
+                        <button className='submit-button' type="submit">Submit Post</button>
                     </form>
             </div>
         </>

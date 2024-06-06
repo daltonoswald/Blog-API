@@ -14,10 +14,14 @@ export default function Nav() {
         <div className='nav'>
             <div className='nav-left'>
                 <Link to='/'>Homepage</Link>
-                <Link to='/new-post'>New Post</Link>
-                <Link to='/drafts'>Drafts</Link>
+                {localStorage.getItem("authenticationToken") && (
+                    <>
+                        <Link to='/new-post'>New Post</Link>
+                        <Link to='/drafts'>Drafts</Link>
+                    </>
+                )}
             </div>
-            <div className='right'>
+            <div className='nav-right'>
             {localStorage.getItem("authenticationToken") && (
                 <>
                     <p>You are signed in as {localStorage.getItem('username')}.</p>

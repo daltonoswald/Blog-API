@@ -53,7 +53,7 @@ export default function FetchPosts({ username }) {
             <Nav username={username} />
             <div className='content'>
                 {posts.map((post) => (
-                    <div key={post._id}>
+                    <div className='post-preview' key={post._id}>
                         <Link 
                             to={`/posts/${post._id}`}
                             key={post._id}

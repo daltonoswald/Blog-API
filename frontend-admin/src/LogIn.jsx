@@ -42,9 +42,7 @@ export default function LogIn() {
                 const token = data.token;
                 const user = data.user;
                 localStorage.setItem("authenticationToken", token);
-                console.log(user.username)
                 localStorage.setItem("username", user.username);
-                console.log(token);
                 navigate("/");
             } else {
                 console.error("Error during authentication:", data.message);
@@ -56,7 +54,7 @@ export default function LogIn() {
 
     return( 
         <>
-            <Nav username={username} setUsername={setUsername} />
+            <Nav />
             <div className="content">
                     <form onSubmit={handleSubmit} className="log-in-form">
                         <label htmlFor='username'>Username</label>
@@ -75,7 +73,7 @@ export default function LogIn() {
                             minLength={8}
                             required
                         />
-                        <button type="submit">Log in</button>
+                        <button className='submit-button' type="submit">Log in</button>
                     </form>
             </div>
         </>

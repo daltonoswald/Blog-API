@@ -17,7 +17,6 @@ export default function PostDetail() {
         try {
             const response = await fetch(url);
             const data = await response.json();
-            console.log(data);
             return data
         } catch (error) {
             console.log(error);
@@ -75,11 +74,10 @@ export default function PostDetail() {
                 <p>No comments yet...</p>
             )
         } else {
-            console.log(comments);
             return (
                 <div className='comments'>
                 {comments.map((comment) => (
-                    <div key={comment._id}>
+                    <div className='comment' key={comment._id}>
                         <div>
                             <p>{comment.author.username}</p>
                             <p>{comment.text}</p>
@@ -117,10 +115,6 @@ export default function PostDetail() {
                 console.error("Error requesting:", error)
             }
         }
-
-        function handleSubmit() {
-            console.log("hi");
-        }
             return (
                 <>
                     <Nav />
@@ -135,22 +129,30 @@ export default function PostDetail() {
                                     key={post._id}
                                     state={{ post }}
                                 >
-                                <p className='edit-button'>Edit</p>
+                                    <p className='edit-button'>Edit</p>
+                                </Link>
+                                <Link
+                                    to={`/delete/${post._id}`}
+                                    key={post.id}
+                                    state={{ post }}
+                                >
+                                    <p className='delete-button'>Delete Post</p>
                                 </Link>
                             </div>
                             <div className='comment-section'>
                                 {renderComments(comments)}
                                 <form onSubmit={addComment} className='comment-form'>
-                                    <label htmlFor='text'>Comment:</label>
+                                    <label className='comment-label' htmlFor='text'>Comment:</label>
                                     <input 
-                                        type='text'
+                                        type='textarea'
                                         id='text'
                                         name='text'
                                         minLength={1}
                                         maxLength={200}
                                         required
+                                        className='comment-input'
                                     />
-                                    <button type="submit">Post Comment</button>
+                                    <button className='submit-button' type="submit">Post Comment</button>
                                 </form>
                             </div>
                                 

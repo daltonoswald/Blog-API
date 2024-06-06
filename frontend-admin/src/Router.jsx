@@ -8,6 +8,7 @@ import UnpublishedPosts from "./UnpublishedPosts.jsx";
 import App from './App.jsx'
 import NewPost from "./NewPost.jsx";
 import PostEdit from "./PostEdit.jsx";
+import PostDelete from "./PostDelete.jsx";
 
 
 export default function Router() {
@@ -15,7 +16,7 @@ export default function Router() {
     const router = createBrowserRouter([
         {
           path: "/",
-          element: <App />,
+          element: <Posts />,
         },
         {
           path:'/drafts',
@@ -41,6 +42,10 @@ export default function Router() {
           path: '/new-post',
           element: <NewPost />
         },
+        {
+          path: '/delete/:postid',
+          element: <PostDelete />,
+        }
       ]);
 
       return <RouterProvider router={router} />

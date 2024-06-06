@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import './App.css'
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
 
 const App = () => {
   const localStorageName = localStorage.getItem('username')
-  console.log(localStorage.getItem('username'));
   return (
     <>
     <Nav />
