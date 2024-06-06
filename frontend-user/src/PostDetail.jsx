@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Nav from './Nav';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export default function PostDetail({ username }) {
+export default function PostDetail() {
     const navigate = useNavigate();
     const location = useLocation();
     const post = location.state?.post
@@ -57,13 +57,13 @@ export default function PostDetail({ username }) {
 
     if (isLoading) return (
         <>
-            <Nav username={username} />
+            <Nav />
             <p>Loading...</p>
         </>
     )
     if (error) return (
         <>
-            <Nav username={username} />
+            <Nav />
             <p>Error</p>
         </>
     )
@@ -79,7 +79,7 @@ export default function PostDetail({ username }) {
             return (
                 <div className='comments'>
                 {comments.map((comment) => (
-                    <div key={comment._id}>
+                    <div className='comment' key={comment._id}>
                         <div>
                             <p>{comment.author.username}</p>
                             <p>{comment.text}</p>
@@ -120,7 +120,7 @@ export default function PostDetail({ username }) {
 
     return (
         <>
-            <Nav username={username} />
+            <Nav />
             <div className='content'>
                     <div key={post._id} className='post-detail'>
                         <h1>{post.title}</h1>
@@ -130,16 +130,17 @@ export default function PostDetail({ username }) {
                     <div className='comment-section'>
                         {renderComments(comments)}
                         <form onSubmit={addComment} className='comment-form'>
-                            <label htmlFor='text'>Comment:</label>
+                            <label className='comment-label' htmlFor='text'>Comment:</label>
                             <input 
-                                type='text'
+                                type='textarea'
                                 id='text'
                                 name='text'
                                 minLength={1}
                                 maxLength={200}
                                 required
+                                className='comment-input'
                             />
-                            <button type="submit">Post Comment</button>
+                            <button className='submit-button' type="submit">Post Comment</button>
                         </form>
                     </div>
                         

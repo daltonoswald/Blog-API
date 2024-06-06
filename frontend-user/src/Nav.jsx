@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Nav( {username, setUsername }) {
+export default function Nav() {
     const navigate = useNavigate();
 
     function logout() {
@@ -15,7 +15,7 @@ export default function Nav( {username, setUsername }) {
             <div className='nav-left'>
                 <Link to='/'>Homepage</Link>
             </div>
-            <div className='right'>
+            <div className='nav-right'>
             {localStorage.getItem("authenticationToken") && (
                 <>
                     <p>You are signed in as {localStorage.getItem('username')}.</p>

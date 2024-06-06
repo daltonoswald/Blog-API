@@ -1,20 +1,17 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
 
-const App = ({ username }) => {
+const App = () => {
   const localStorageName = localStorage.getItem('username')
-  console.log(localStorage.getItem('username'));
   return (
     <>
-    <Nav username={username} />
+    <Nav />
       <div className='content'>
         <h1>Hello from the main page of the app!</h1>
         <p>Here are some examples of links to other pages.</p>
-        <p>Local Storage name {localStorageName} </p>
         <nav>
           <ul>
             <li>

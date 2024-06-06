@@ -90,7 +90,7 @@ export default function SignUp() {
                         minLength={8}
                         required
                     />
-                    <button type='submit'>Sign up</button>
+                    <button className='submit-button' type='submit'>Sign up</button>
                 </form>
             </div>
         </>

@@ -2,13 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 
-export default function LogIn( { username, setUsername }) {
+export default function LogIn() {
     const navigate = useNavigate();
-
-    // if (localStorage.getItem('authenticationToken')) {
-    //     console.log("Already signed in");
-    //     navigate('/');
-    // }
     
     useEffect(() => {
         if (localStorage.getItem('authenticationToken')) {
@@ -42,10 +37,7 @@ export default function LogIn( { username, setUsername }) {
                 const token = data.token;
                 const user = data.user;
                 localStorage.setItem("authenticationToken", token);
-                console.log(user.username)
-                setUsername(user.username);
                 localStorage.setItem("username", user.username);
-                console.log(token);
                 navigate("/");
             } else {
                 console.error("Error during authentication:", data.message);
@@ -57,7 +49,7 @@ export default function LogIn( { username, setUsername }) {
 
     return( 
         <>
-            <Nav username={username} setUsername={setUsername} />
+            <Nav />
             <div className="content">
                     <form onSubmit={handleSubmit} className="log-in-form">
                         <label htmlFor='username'>Username</label>
@@ -76,7 +68,7 @@ export default function LogIn( { username, setUsername }) {
                             minLength={8}
                             required
                         />
-                        <button type="submit">Log in</button>
+                        <button className="submit-button" type="submit">Log in</button>
                     </form>
             </div>
         </>

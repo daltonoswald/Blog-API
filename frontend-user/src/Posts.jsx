@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from './Nav';
 
-export default function FetchPosts({ username }) {
+export default function FetchPosts() {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState([])
@@ -37,23 +37,23 @@ export default function FetchPosts({ username }) {
 
     if (isLoading) return (
         <>
-            <Nav username={username} />
+            <Nav />
             <p>Loading...</p>
         </>
     )
     if (error) return (
         <>
-            <Nav username={username} />
+            <Nav />
             <p>Error</p>
         </>
     )
 
     return (
         <>
-            <Nav username={username} />
+            <Nav />
             <div className='content'>
                 {posts.map((post) => (
-                    <div key={post._id}>
+                    <div className='post-preview' key={post._id}>
                         <Link 
                             to={`/posts/${post._id}`}
                             key={post._id}
