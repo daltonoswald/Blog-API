@@ -1,4 +1,5 @@
 const alreadyLoggedIn = (req, res, next) => {
+    console.log("middelware");
     const alreadyLoggedIn = req.get('authenticationToken');
     console.log(`alreadyLoggedIn = ` + alreadyLoggedIn);
 
@@ -6,8 +7,9 @@ const alreadyLoggedIn = (req, res, next) => {
         res.sendStatus(409);
         res.redirect("/");
         next();
+    } else {
+        next();
     }
-    next();
 }
 
 module.exports = { alreadyLoggedIn }

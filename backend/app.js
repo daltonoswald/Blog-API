@@ -22,7 +22,7 @@ const mongoDB = process.env.DEV_DB_URL;
 
 app.use(cors({
   origin: 'http://localhost:5173',
-  methods: 'GET,PUT,POST',
+  methods: 'GET,PUT,POST, DELETE',
   optionsSuccessStatus: 204,
 }))
 
