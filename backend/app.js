@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose')
 const cors = require('cors');
+const compression = require('compression');
+const helmet = require('helmet');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
@@ -14,17 +16,34 @@ const postsRouter = require('./routes/posts')
 var app = express();
 
 mongoose.set("strictQuery", false);
-const mongoDB = process.env.DEV_DB_URL;
+const mongoDB = process.env.MONGODB_URI || process.env.DEV_DB_URL;
 // const mongoDB = dev_db_url;
 
 // const allowedOrigins = process.env.ALLOWED_ORIGINS || '';
 // const allowedOriginsArray = allowedOrigins.split(',').map((item) => item.trim());
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  // origin: 'http://localhost:5173',
+  origin: `https://blog-api-production-6af2.up.railway.app`,
   methods: 'GET,PUT,POST, DELETE',
   optionsSuccessStatus: 204,
 }))
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "scripts-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    }
+  })
+)
+
+const RateLimit = require('express-rate-limit');
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 20,
+});
+
+app.use(limiter);
 
 main().catch((err) => console.log(err));
 async function main() {
@@ -40,6 +59,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(compression());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

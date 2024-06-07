@@ -147,7 +147,7 @@ exports.post_detail = asyncHandler(async (req, res, next) => {
 })
 
 exports.delete_post = asyncHandler(async (req, res, next) => {
-    jwt.verify(req.token, process.env.TOKEN_KEY, async (err, authData) => {
+    jwt.verify(req.token, TOKEN_KEY || process.env.TOKEN_KEY, async (err, authData) => {
         if (authData.user.admin === true) {
             const post = await Post.findById(req.params.postid).exec();
             // res.json({ 
@@ -170,7 +170,7 @@ exports.delete_post = asyncHandler(async (req, res, next) => {
 // When testing with Postman, you must include "Bearer " and the req.token in the Authorization tab
 exports.postman = [
     asyncHandler(async (req, res, next) => {
-        jwt.verify(req.token, process.env.TOKEN_KEY, (err, authData) => {
+        jwt.verify(req.token, TOKEN_KEY || process.env.TOKEN_KEY, (err, authData) => {
             if (err) {
                 console.log(err);
                 res.json({
