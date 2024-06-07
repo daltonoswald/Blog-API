@@ -24,7 +24,8 @@ const mongoDB = process.env.MONGODB_URI || process.env.DEV_DB_URL;
 
 app.use(cors({
   // origin: 'http://localhost:5173',
-  origin: `https://blog-api-production-6af2.up.railway.app`,
+  origin: 'https://daltonoswald-blog-api-admin.netlify.app/',
+  // origin: `https://blog-api-production-6af2.up.railway.app`,
   methods: 'GET,PUT,POST, DELETE',
   optionsSuccessStatus: 204,
 }))
