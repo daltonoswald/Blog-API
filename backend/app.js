@@ -23,7 +23,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS || '';
 const allowedOriginsArray = allowedOrigins.split(',').map((item) => item.trim());
 
 app.use(cors({
-  origin: allowedOriginsArray,
+  origin: 'http://localhost:5173',
   methods: 'GET,PUT,POST, DELETE',
   optionsSuccessStatus: 204,
 }))
