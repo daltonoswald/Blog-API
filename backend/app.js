@@ -19,13 +19,11 @@ mongoose.set("strictQuery", false);
 const mongoDB = process.env.MONGODB_URI || process.env.DEV_DB_URL;
 // const mongoDB = dev_db_url;
 
-// const allowedOrigins = process.env.ALLOWED_ORIGINS || '';
-// const allowedOriginsArray = allowedOrigins.split(',').map((item) => item.trim());
+const allowedOrigins = process.env.ALLOWED_ORIGINS || '';
+const allowedOriginsArray = allowedOrigins.split(',').map((item) => item.trim());
 
 app.use(cors({
-  // origin: 'http://localhost:5173',
-  origin: 'https://daltonoswald-blog-api-admin.netlify.app/',
-  // origin: `https://blog-api-production-6af2.up.railway.app`,
+  origin: allowedOriginsArray,
   methods: 'GET,PUT,POST, DELETE',
   optionsSuccessStatus: 204,
 }))
