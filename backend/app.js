@@ -19,9 +19,14 @@ mongoose.set("strictQuery", false);
 const mongoDB = process.env.MONGODB_URI || process.env.DEV_DB_URL;
 // const mongoDB = dev_db_url;
 
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+
 
 app.use(cors({
-  origin: [process.env.LOCAL_ORIGIN || LOCAL, process.env.ADMIN_ORIGIN || ADMIN, process.env.USER_ORIGIN || USER, "http://localhost:5173"],
+  origin: "http://localhost:5173",
   methods: 'GET,PUT,POST, DELETE',
   optionsSuccessStatus: 204,
 }))
@@ -42,10 +47,6 @@ const limiter = RateLimit({
 
 app.use(limiter);
 
-main().catch((err) => console.log(err));
-async function main() {
-  await mongoose.connect(mongoDB);
-}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
