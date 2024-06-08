@@ -14,7 +14,8 @@ export default function LogIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = `http://localhost:3000/users/log-in`;
+        // const url = `http://localhost:3000/users/log-in`;
+        const url = `https://blog-api-production-6af2.up.railway.app/users/log-in`;
 
         const formData = {
             username: event.target.username.value,

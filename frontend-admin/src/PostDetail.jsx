@@ -9,9 +9,12 @@ export default function PostDetail() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [comments, setComments] = useState(null);
-    const url = `http://localhost:3000/posts/${post._id}`;
-    const commentUrl = `http://localhost:3000/posts/${post._id}/comments`;
-    const addCommentUrl = `http://localhost:3000/posts/${post._id}/comments/new-comment`
+    // const url = `http://localhost:3000/posts/${post._id}`;
+    const url = `https://blog-api-production-6af2.up.railway.app/posts/${post._id}`;
+    // const commentUrl = `http://localhost:3000/posts/${post._id}/comments`;
+    const commentUrl = `https://blog-api-production-6af2.up.railway.app/posts/${post._id}/comments`;
+    // const addCommentUrl = `http://localhost:3000/posts/${post._id}/comments/new-comment`
+    const addCommentUrl = `https://blog-api-production-6af2.up.railway.app/posts/${post._id}/comments/new-comment`;
 
     const fetchPost = async () => {
         try {

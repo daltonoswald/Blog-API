@@ -10,8 +10,10 @@ export default function PostEdit() {
     const [error, setError] = useState(null);
     const [title, setTitle] = useState(post.title);
     const [text, setText] = useState(post.text)
-    const url = `http://localhost:3000/posts/${post._id}`;
-    const editUrl = `http://localhost:3000/posts/edit/${post._id}`;
+    // const url = `http://localhost:3000/posts/${post._id}`;
+    const url = `https://blog-api-production-6af2.up.railway.app/posts/${post._id}`;
+    // const editUrl = `http://localhost:3000/posts/edit/${post._id}`;
+    const editUrl = `https://blog-api-production-6af2.up.railway.app/posts/edit/${post._id}`;
 
     const fetchPost = async () => {
         try {

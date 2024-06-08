@@ -6,7 +6,8 @@ export default function UnpublishedPosts() {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState([])
-    const url = `http://localhost:3000/posts/drafts`;
+    // const url = `http://localhost:3000/posts/drafts`;
+    const url = `https://blog-api-production-6af2.up.railway.app/posts/drafts`;
 
     const fetchAllPosts = async () => {
         try {

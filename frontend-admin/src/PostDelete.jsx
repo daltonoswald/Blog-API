@@ -8,7 +8,8 @@ export default function PostDelete() {
     const post = location.state?.post
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const url = `http://localhost:3000/posts/delete/${post._id}`
+    // const url = `http://localhost:3000/posts/delete/${post._id}`
+    const url = `https://blog-api-production-6af2.up.railway.app/posts/delete/${post._id}`;
 
 //     const fetchPost = async () => {
 //         try {
