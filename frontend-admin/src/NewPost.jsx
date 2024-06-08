@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function NewPost() {
     const navigate = useNavigate();
+    const railwayUrl = `http://blog-api-production-6af2.up.railway.app/posts/new-post`
     const url = `http://localhost:3000/posts/new-post`;
 
     const handleSubmit = async (e) => {
@@ -16,7 +17,7 @@ export default function NewPost() {
 
         try {
             const token = localStorage.getItem('authenticationToken');
-            const response = await fetch(url,
+            const response = await fetch(railwayUrl,
                 {
                     method: "POST",
                     headers: {

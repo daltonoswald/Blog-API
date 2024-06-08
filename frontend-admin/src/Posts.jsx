@@ -6,15 +6,24 @@ export default function FetchPosts({ username }) {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState([])
+    // const url = `http://blog-api-production-6af2.up.railway.app/posts`;
     const url = `http://localhost:3000/posts`;
+    // const url =`mongodb://mongo:IuneFxMdHTIqTrIUIRsixpBBJcUotOgC@monorail.proxy.rlwy.net:43162/posts`
 
     const fetchAllPosts = async () => {
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                mode: "cors",
+            });
             const data = await response.json();
             return data
         } catch (error) {
             console.log(error);
+            console.error(error);
             throw error
         }
     }
@@ -23,6 +32,7 @@ export default function FetchPosts({ username }) {
             try {
                 const getPosts = async () => {
                     const postsData = await fetchAllPosts();
+                    console.log(postsData);
                     setPosts(postsData);
                     setIsLoading(false);  
                 }
@@ -33,6 +43,19 @@ export default function FetchPosts({ username }) {
                 throw error;
             }
     }, []);
+
+    // useEffect(() => {
+    //     fetch(url, {
+    //         method: 'GET',
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         mode: 'cors'
+    //     })
+    //         .then((response) => response.json())
+    //         .then((data) => setPosts(data))
+    //         .catch((error) => console.error(error));
+    // }, [])
 
     if (isLoading) return (
         <>
