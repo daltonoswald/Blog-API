@@ -6,9 +6,8 @@ export default function FetchPosts({ username }) {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState([])
-    // const url = `http://blog-api-production-6af2.up.railway.app/posts`;
-    const url = `http://localhost:3000/posts`;
-    // const url =`mongodb://mongo:IuneFxMdHTIqTrIUIRsixpBBJcUotOgC@monorail.proxy.rlwy.net:43162/posts`
+    const url = `http://blog-api-production-6af2.up.railway.app/posts`;
+    // const url = `http://localhost:3000/posts`;
 
     const fetchAllPosts = async () => {
         try {
