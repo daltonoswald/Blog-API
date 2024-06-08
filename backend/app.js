@@ -19,11 +19,9 @@ mongoose.set("strictQuery", false);
 const mongoDB = process.env.MONGODB_URI || process.env.DEV_DB_URL;
 // const mongoDB = dev_db_url;
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS || '';
-const allowedOriginsArray = allowedOrigins.split(',').map((item) => item.trim());
 
 app.use(cors({
-  origin: 'localhost:5173',
+  origin: [process.env.LOCAL_ORIGIN, process.env.ADMIN_ORIGIN, process.env.USER_ORIGIN, "http://localhost:5173", LOCAL, ADMIN, USER],
   methods: 'GET,PUT,POST, DELETE',
   optionsSuccessStatus: 204,
 }))
