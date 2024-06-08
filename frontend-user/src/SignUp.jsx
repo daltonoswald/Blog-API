@@ -14,7 +14,8 @@ export default function SignUp() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = `http://localhost:3000/users/sign-up`;
+        // const url = `http://localhost:3000/users/sign-up`;
+        const url = `https://blog-api-production-6af2.up.railway.app/users/sign-up`;
 
         const formData = {
             first_name: event.target.first_name.value,
