@@ -21,7 +21,7 @@ const mongoDB = process.env.MONGODB_URI || process.env.DEV_DB_URL;
 
 
 app.use(cors({
-  origin: [process.env.LOCAL_ORIGIN, process.env.ADMIN_ORIGIN, process.env.USER_ORIGIN, "http://localhost:5173", LOCAL, ADMIN, USER],
+  origin: [process.env.LOCAL_ORIGIN || LOCAL, process.env.ADMIN_ORIGIN || ADMIN, process.env.USER_ORIGIN || USER, "http://localhost:5173"],
   methods: 'GET,PUT,POST, DELETE',
   optionsSuccessStatus: 204,
 }))
