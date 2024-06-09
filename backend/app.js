@@ -26,8 +26,8 @@ async function main() {
 
 
 app.use(cors({
-  origin: ["https://localhost:5173", `https://daltonoswald-blog-api-admin.netlify.app`,`https://daltonoswald-blog-api-admin.netlify.app/log-in`, 'https://daltonoswald-blog-api-admin.netlify.app'],
-  methods: 'GET,PUT,POST, DELETE',
+  origin: ["https://localhost:5173", `https://daltonoswald-blog-api-admin.netlify.app`, `https://daltonoswald-blog-api-admin.netlify.app/log-in`, 'https://daltonoswald-blog-api-user.netlify.app'],
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],
   optionsSuccessStatus: 204,
 }))
 
