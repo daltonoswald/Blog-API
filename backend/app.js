@@ -30,7 +30,7 @@ app.use(cors({
     "https://localhost:5173", 
     `https://daltonoswald-blog-api-admin.netlify.app`, 
     'https://daltonoswald-blog-api-user.netlify.app', 
-    'https://blog-api-production-6af2.up.raillway.app'],
+    'https://blog-api-production-6af2.up.railway.app'],
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
   optionsSuccessStatus: 204,
 }))
