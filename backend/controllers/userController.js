@@ -55,7 +55,7 @@ exports.log_in = asyncHandler(async (req, res, next) => {
     
             const options = {};
             options.expiresIn = 1 * 24 * 60 * 60;
-            const token = jwt.sign({ user }, (TOKEN_KEY || process.env.TOKEN_KEY), options);
+            const token = jwt.sign({ user }, process.env.TOKEN_KEY || TOKEN_KEY, options);
     
             if (!isMatch) {
                 res.status(401).json({ message: "Incorrect password" });
