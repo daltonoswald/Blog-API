@@ -27,7 +27,7 @@ async function main() {
 
 app.use(cors({
   origin: [
-    "https://localhost:5173", 
+    "http://localhost:5173", 
     `https://daltonoswald-blog-api-admin.netlify.app`, 
     'https://daltonoswald-blog-api-user.netlify.app', 
     'https://blog-api-production-6af2.up.railway.app/users/log-in',
