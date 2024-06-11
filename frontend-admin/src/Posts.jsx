@@ -7,7 +7,7 @@ export default function FetchPosts({ username }) {
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState([])
     const url = `https://blog-api-production-6af2.up.railway.app/posts`;
-    // const url = `http://localhost:3000/posts`;
+    const localUrl = `http://localhost:3000/posts`;
 
     const fetchAllPosts = async () => {
         try {
@@ -31,7 +31,6 @@ export default function FetchPosts({ username }) {
             try {
                 const getPosts = async () => {
                     const postsData = await fetchAllPosts();
-                    console.log(postsData);
                     setPosts(postsData);
                     setIsLoading(false);  
                 }

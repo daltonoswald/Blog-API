@@ -73,7 +73,7 @@ exports.delete_comment = asyncHandler(async (req, res, next) => {
 // When testing with Postman, you must include "Bearer " and the req.token in the Authorization tab
 exports.postman = [
     asyncHandler(async (req, res, next) => {
-        jwt.verify(req.token, TOKEN_KEY || process.env.TOKEN_KEY, (err, authData) => {
+        jwt.verify(req.token, process.env.TOKEN_KEY ||  TOKEN_KEY, (err, authData) => {
             if (err) {
                 console.log(err);
                 res.json({

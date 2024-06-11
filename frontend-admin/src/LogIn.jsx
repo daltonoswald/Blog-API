@@ -35,7 +35,6 @@ export default function LogIn() {
             const data = await response.json();
 
             if (response.ok) {
-                console.log(data);
                 const token = data.token;
                 const user = data.user;
                 localStorage.setItem("authenticationToken", token);
